@@ -20,6 +20,7 @@ options = {
     :ansible_vars     => {
         '_user' => 'vagrant'
     },
+    :ansible_tags     => ENV['TAGS'],
     :debug            => false
 }
 
@@ -101,6 +102,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Provisioners
     config.vm.provision 'ansible' do |ansible|
         ansible.playbook      = options[:ansible_playbook]
+        ansible.tags          = options[:ansible_tags]
         ansible.verbose       = options[:debug] ? 'vvvv' : false
         ansible.extra_vars    = options[:ansible_vars]
         ansible.sudo          = true

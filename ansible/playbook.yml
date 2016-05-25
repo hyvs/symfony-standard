@@ -16,6 +16,7 @@
     - role: elao.curl
     - role: elao.acl
     - role: elao.files
+      tags: ['files']
       elao_files: "{{ _all_files + _env_files|default([]) }}"
     - role: elao.make
     - role: elao.nodejs
@@ -27,9 +28,11 @@
     - role: elao.logio
       when: _env == 'dev'
     - role: elao.php
+      tags: ['php']
     - role: elao.opcache-dashboard
       when: _env == 'dev'
     - role: elao.nginx
+      tags: ['nginx']
       elao_nginx_configs: "{{ _all_nginx_configs + _env_nginx_configs|default([]) }}"
     # Cron
     #- role: elao.cron
